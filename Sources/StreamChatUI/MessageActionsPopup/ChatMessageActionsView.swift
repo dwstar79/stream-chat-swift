@@ -5,27 +5,32 @@
 import StreamChat
 import UIKit
 
+/// View that contains `_ChatMessageActionItem`s
+/// It is shown in `_ChatMessagePopupVC` to show the defined action items
 public typealias ChatMessageActionsView = _ChatMessageActionsView<NoExtraData>
 
+/// View that contains `_ChatMessageActionItem`s
+/// It is shown in `_ChatMessagePopupVC` to show the defined action items
 open class _ChatMessageActionsView<ExtraData: ExtraDataTypes>: _View, UIConfigProvider {
-    public var actionItems: [ChatMessageActionItem<ExtraData>] = [] {
+    /// The data this view component shows.
+    public var content: [ChatMessageActionItem] = [] {
         didSet { updateContentIfNeeded() }
     }
 
-    // MARK: Subviews
+    /// Stack view with action items
+    open private(set) lazy var stackView: UIStackView = UIStackView()
+        .withoutAutoresizingMaskConstraints
+    
+    /// Class used for buttons in `stackView`
+    open var actionButtonClass: _ChatMessageActionButton<ExtraData>.Type { _ChatMessageActionButton<ExtraData>.self }
 
-    public private(set) lazy var stackView: UIStackView = {
-        let stackView = UIStackView()
+    override public func defaultAppearance() {
+        super.defaultAppearance()
         stackView.axis = .vertical
         stackView.alignment = .fill
         stackView.distribution = .fill
         stackView.spacing = 1
-        return stackView.withoutAutoresizingMaskConstraints
-    }()
-
-    // MARK: Overrides
-
-    override public func defaultAppearance() {
+        
         layer.cornerRadius = 16
         layer.masksToBounds = true
         backgroundColor = uiConfig.colorPalette.border
