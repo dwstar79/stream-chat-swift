@@ -46,9 +46,9 @@ open class _ChatMessageActionsView<ExtraData: ExtraDataTypes>: _View, UIConfigPr
             stackView.removeArrangedSubview($0)
         }
 
-        actionItems.forEach {
-            let actionView = uiConfig.messageList.messageActionsSubviews.actionButton.init()
-            actionView.actionItem = $0
+        content.forEach {
+            let actionView = actionButtonClass.init()
+            actionView.content = $0
             stackView.addArrangedSubview(actionView)
         }
     }
