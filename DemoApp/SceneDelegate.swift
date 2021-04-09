@@ -10,10 +10,13 @@ extension UIColor {
 
 class SceneDelegate: UIResponder, UIWindowSceneDelegate {
     var window: UIWindow?
-
+    
     func scene(_ scene: UIScene, willConnectTo session: UISceneSession, options connectionOptions: UIScene.ConnectionOptions) {
         guard let scene = scene as? UIWindowScene else { return }
         scene.windows.forEach { $0.tintColor = .streamBlue }
+        DemoAppCoordinator.shared = (scene.windows.first?.rootViewController as? UINavigationController).map {
+            .init(navigationController: $0)
+        }
     }
 
     func sceneDidDisconnect(_ scene: UIScene) {}

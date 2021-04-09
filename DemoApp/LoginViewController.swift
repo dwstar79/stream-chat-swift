@@ -95,6 +95,6 @@ extension LoginViewController: UITableViewDelegate, UITableViewDataSource {
             return
         }
         
-        presentChat(userCredentials: builtInUsers[indexPath.row])
+        DemoAppCoordinator.shared.presentChat(userCredentials: builtInUsers[indexPath.row])
     }
 }
