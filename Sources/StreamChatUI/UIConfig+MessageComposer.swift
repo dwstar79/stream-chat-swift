@@ -20,7 +20,10 @@ public extension _UIConfig {
             _ChatMessageComposerImageAttachmentsView<ExtraData>.self
         public var documentAttachmentsView: _ChatMessageComposerDocumentAttachmentsView<ExtraData>.Type =
             _ChatMessageComposerDocumentAttachmentsView<ExtraData>.self
-        public var sendButton: _ChatMessageComposerSendButton<ExtraData>.Type = _ChatMessageComposerSendButton<ExtraData>.self
+        /// Button used in Composer used for sending messages.
+        public var sendButton: UIButton.Type = _ChatMessageSendButton<ExtraData>.self
+        /// Button used in Composer used for confirming editing messages.
+        public var editButton: UIButton.Type = _ChatMessageConfirmEditButton<ExtraData>.self
         /// Buttons used in the left side of the composer. Corresponds to attachment and actions buttons.
         public var composerButton: UIButton.Type = UIButton.self
         public var textView: _ChatMessageComposerInputTextView<ExtraData>.Type = _ChatMessageComposerInputTextView<ExtraData>.self
